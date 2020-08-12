@@ -11,10 +11,9 @@ Personal Project Assignments are flagged with P#, and Career Readiness assignmen
 You will use this repository in tandem with Canvas. All of your grades will be recorded in Canvas, however you will submit your work through this GitHub repository.
 
 We are making you use GitHub for two important reasons:
-<ol>
-<li>You will get more practice with GitHub</li>
-<li>Your assignments are all stored in one place</li>
-</ol>
+
+1. You will get more practice with GitHub
+2. Your assignments are all stored in one place
 
 ## Next Step
 Now that you know what this repo is for let's get it setup.
