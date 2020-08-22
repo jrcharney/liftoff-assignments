@@ -1,0 +1,216 @@
+@startuml
+
+title  Process
+
+(*) -right-> "{{
+    salt
+    {
+        <&rss> <b>RSS/ATOM Bulletin</b>
+        ---
+        The National Weather Service posts a bulletin
+        via RSS/ATOM feed.
+    }
+}}" as NWS
+
+(*) -down-> "{{
+    salt
+    {
+        <&list-rich> <b>User Settings</b> : General
+        ---
+        {+
+            {/ <b>General</b> | Alerts | Locations | Map Settings }
+            {
+                {
+                    [X] Enable Notifications
+                    [X] Enable Geolocation
+                }
+                ---
+                {
+                    <b>Level of Notifications</b>
+                    ( ) None
+                    (X) Warnings
+                    ( ) Watches
+                    ( ) Advisories/Statements
+                    ( ) Tests
+                }
+            }
+            ===
+            {
+                [<&circle-check> OK] | [<&circle-x>Cancel]
+            } 
+        }
+    }
+
+}}" as UserSettings
+
+NWS --> "{{
+    salt 
+    {
+        <&rss> <b>RSS Reader</b>
+        ---
+        LightniNG receive RSS Feeds
+    }
+}}" as RSSReader
+
+RSSReader --> "{{
+    salt
+    {
+        <&target> <b>Alert Filter</b>
+        ---
+        Reduce the feed to alerts defined by the user
+    }
+}}" as AlertFilter
+
+UserSettings -down-> "{{
+    salt
+    {
+        <&list-rich> <b>User Settings</b> : Alerts
+        ---
+        Enable the alerts you want to see.
+        ---
+        {+
+            {/ General | <b>Alerts</b> | Locations | Map Settings }
+            {
+                {
+                    S.A.M.E. Alert: | ^SAME Alerts^ | [<&plus> Add]
+                }
+                ---
+                {
+                    [X] TOR - Tornado Warning          | [<&minus> Delete] 
+                    [X] SVR - Severe T-Storm Warning   | [<&minus> Delete]
+                    [ ] TOA - Tornado Watch            | [<&minus> Delete]
+                    [ ] SVA - Severe T-Storm Watch     | [<&minus> Delete]
+                    [ ] SVS - Severe Weather Statement | [<&minus> Delete]
+
+                }
+            }
+            ===
+            {
+                [<&circle-check> OK] | [<&circle-x>Cancel]
+            } 
+        }
+    }
+}}" as UserAlerts
+
+UserAlerts -right-> AlertFilter
+
+AlertFilter --> "{{
+    salt
+    {
+        <&target> <b>Location Filter</b>
+        ---
+        Reduce the fee to locations defined by the user.
+    }
+}}" as LocationFilter
+
+LocationFilter --> "{{
+    salt
+    {
+        <&bell> <b>Notification</b>
+        ---
+        Display a notification box alerting the user.
+    }
+}}" as Notification
+
+UserAlerts -down-> "{{
+    salt
+    {
+        <&list-rich> <b>User Settings</b> : Locations
+        ---
+        Determine what counties or locations you wish to see notifications.
+        A location will be used to find a INCITS 31-2009 code.
+        ---
+        {+
+            {/ General | Alerts | <b>Locations</b> | Map Settings }
+            {
+                {
+                    Enter A Location: | "St. Louis, MO 63101" | [<&plus> Add]
+                }
+                ---
+                {
+                    [X] 29510 - St. Louis City, MO       | [X] TOR | [X] SVR | <&ellipses> | [<&minus> Delete] 
+                    [X] 29189 - St. Louis County, MO     | [X] TOR | [X] SVR | <&ellipses> | [<&minus> Delete]
+                    [X] 29183 - St. Charles County, MO   | [X] TOR | [X] SVR | <&ellipses> | [<&minus> Delete]
+                    [ ] 17119 - Madison County, IL       | [X] TOR | [X] SVR | <&ellipses> | [<&minus> Delete]
+                    [ ] 17163 - St. Clair County, IL     | [X] TOR | [X] SVR | <&ellipses> | [<&minus> Delete]
+                }
+            }
+            ===
+            {
+                [<&circle-check> OK] | [<&circle-x>Cancel]
+            } 
+        }
+    }
+}}" as UserLocations
+
+UserLocations -right-> LocationFilter
+
+
+Notification --> "{{
+    salt
+    {
+        <&map> <b>Display Map</b>
+        ---
+        If the user clicks on the notification,
+        they are shown a map with the radar image, 
+        a polygon of the warning, and a callout
+        showing the full warning message.
+        The map has layers.
+        ---
+        {+
+            <&map> Map of the warned area.
+            <&layers> A hamburger menu of the layers.
+            <&comment-square> Callout with scrollable bulleting.
+        }
+    }
+}}" as Map
+
+
+UserLocations -down-> "{{
+    salt
+    {
+        <&list-rich> <b>User Settings</b> : Map Layers/Settings
+        ---
+        Set the default settings for the map.
+        There will be a hamburger menu on the map, but these settings
+        determine the default settings.
+        The map will use Leaflet.js, OpenStreetMaps, OpenWeatherMaps,
+        and will fetch data and KML data from the NWS.
+        ---
+        {+
+            {/ General | Alerts | Locations | <b>Map Settings</b> }
+            {
+                {
+                    Map Type: | ( ) Physical | ( ) Political | ( ) Geographic | ( ) Street
+                }
+                ---
+                {
+                    Radars
+                    {
+                        {
+                            Enter A Location: | "St. Louis, MO 63101" | [<&plus> Add]
+                        }
+                        ---
+                        {
+                            (X) KLSX - St. Louis, MO    | [<&minus> Delete] 
+                            ( ) KILX - Lincoln, IL      | [<&minus> Delete]
+                            ( ) KSGF - Springfield, MO  | [<&minus> Delete]
+                            ( ) KPAH - Paducah, IL      | [<&minus> Delete]
+                            ( ) KDVN - Davenport, IA    | [<&minus> Delete]
+                            ( ) KEAX - Kansas City, MO  | [<&minus> Delete]
+                        }
+                    }
+                }
+            }
+            ===
+            {
+                [<&circle-check> OK] | [<&circle-x>Cancel]
+            } 
+        }
+    }
+}}" as UserMap
+
+UserMap -right-> Map
+
+
+@enduml

@@ -12,11 +12,50 @@ Include at least 3 wireframes here, adding images or files to your repository as
 
 <!-- TODO: Use PlantUML to make wireframes -->
 
+> **Note:** [PlantUML](https://plantuml.com/) is available for VSCode. [Get it](https://github.com/qjebbs/vscode-plantuml) in the extension store.
+> PlantUML uses a wireframe syntax called [Salt](https://plantuml.com/salt) that is easy to use.
+> [This guy](https://www.codeproject.com/Articles/1278703/UML-Made-Easy-with-PlantUML-VS-Code) does a fairly good job of explaining how to set it up. Although, I'm not sure why syntax highlight doesn't work for `*.uml` files.
+
 <!-- Wireframe 1 -->
+#### Wireframe 1: User Management
+
+Basically, your standard user management setup. "But I've seen this before!" or "This doesn't look like a wireframe".
+
+I can assure you that it is. This wireframe shows the sequence of which you will encounter these wireframes.
+
+![User Management](assets/User%20Management.png)
+
+The User Management Part will include
+* The Index Page
+  * If the user is logged out, they will see a Splash Page
+  * If the User is logged in, they will see map and probably a local weather report.
+* The Sign Up Form
+* The Login
+* Password Recovery
+* Username Recovery
+* User Profile Settings
+
+
+#### Wireframe 2: Processing
 <!-- Wireframe 2 -->
+
+This diagram shows how the user settings and the notification process  aligns with each other
+
+![Process](assets/Process.png)
+
+The Process part will include
+* User Settings
+* An RSS Reader
+* Filters to determine which feeds to look form
+* Notifications
+* A Display Map
+
+#### Wireframe 3: The Map
+
+This part is probably the most difficult to wireframe as I don't think PlantUML or Salt has the capabilities to illustrate this.
+
 <!-- Wireframe 3 -->
 
-(Coming very soon.)
 
 ### Project Tracker
 

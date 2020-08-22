@@ -1,0 +1,228 @@
+@startuml
+' This file describes one on my wireframes.
+
+title User Management
+
+(*) -down-> "{{
+    salt
+    {+
+        {
+            <&bolt> <b>LightniNG</b>
+            ===
+            {
+                [Sign up] | [<&account-login> Login]
+            }
+            ---
+            <&droplet> Splash
+            ---
+            {
+                <u>About<&link-intact></u> | <u>TOS<&link-intact></u> | <u>Disclaimer<&link-intact></u> | <u>Help<&link-intact></u>
+            }
+
+        }
+    }
+}}" as index
+
+index -down-> "{{
+    salt
+    {+
+        <b>Sign Up</b>
+        ---
+        {
+            <&envelope-closed> Email | "you@mail.com "
+            <&person> Username | "Username  "
+            <&key> Password | "********  "
+            <&key> Password Again | "********  "
+        }
+        ---
+        {
+            Name | "FirstName" | "LastName"
+        }
+        {
+            Date of Birth | "MM" | "DD" | "YYYY" | <u>Why?<&link-intact></u>
+        }
+        ---
+        {
+        <u>Disclaimer<&link-intact></u>
+        <u>Terms of Service<&link-intact></u>
+        [ ] Check if you Agree
+        }
+        ---
+        CAPTCHA
+        ---
+        [Submit]
+    }
+}}" as signup
+
+index -down-> "{{
+    salt
+    {+
+        <&account-login> <b>Log In</b>
+        ---
+        {
+            <&person> Username | "Username  " | <u>Recover Username</u> <&link-intact>
+            <&key> Password | "********  " | <u>Recover Password</u>  <&link-intact>
+        }
+        ---
+        {
+            [<&account-login> OK] | [<&circle-x> Cancel]
+        }
+    }
+
+}}" as login
+
+login -left-> "{{
+    salt
+    {+
+        <b>Recover Username</b>
+        ---
+        Please enter your email address.
+        {
+            <&envelope-closed> Email | "you@mail.com "
+        }
+        ---
+        {
+            [<&inbox> OK] | [<&circle-x> Cancel]
+        }
+    }
+}}" as recoverun
+
+login -left-> "{{
+    salt
+    {+
+        <b>Recover Password</b>
+        ---
+        Please enter your email address.
+        {
+            <&person> | "Username  " | <u>Recover Username</u> <&link-intact>
+        }
+        ---
+        {
+            [<&circle-check> OK] | [<&circle-x> Cancel]
+        }
+    }
+}}" as recoverpw
+
+recoverpw -down-> recoverun
+
+signup --> "<&envelope-open> Email Verification" as emailveri
+recoverun -down-> emailveri
+recoverpw -down-> emailveri
+emailveri -up-> login
+
+login -down-> "{{
+    salt
+    {+
+        {
+            <b><&bolt> LightniNG</b>
+            ===
+            Welcome!
+            ---
+            {
+                [<&compass> Locations] | [<&bell> Alerts] | [<&question-mark> Help] | [<&person> User Profile] | [<&account-logout> Logout]
+            }
+            ---
+            {
+                <&map> main content
+                {+
+                    <&layers> layers
+                    <&map-marker> locations
+                    <&rss> Alerts
+                }
+            }
+            ---
+            {
+                <u>About<&link-intact></u> | <u>TOS<&link-intact></u> | <u>Disclaimer<&link-intact></u> | <u>Help<&link-intact></u>
+            }
+        }
+    }
+}}" as index2
+
+index2 -up-> index
+
+index2 -down-> "{{
+    salt
+    {+
+        {
+            <&person> <b>User Profile</b>
+            ---
+            {
+                {+
+                    <&info><b>NOTE:</b> If you change your Email, Username, or Password,
+                    we will need to send you an email to verify these changes.
+                }
+                ---
+                <b>Update Email Address</b>
+                If you change your email, enter it twice here.
+                {
+                    <&envelope-closed> Email       | "you@mail.com "
+                    <&envelope-closed> Email Again | "you@mail.com "
+                }
+                <b>Update Username</b>
+                We'd rather you didn't but if you have to, go ahead.
+                {
+                    <&person> Username | "Username  "
+                }
+                <b>Change your password</b>
+                If you your password, enter it twice.
+                {
+                    <&key> Password | "********  "
+                    <&key> Password Again | "********  "
+                }
+            }
+            ---
+            {
+                Name | "FirstName" | "LastName"
+            }
+            {
+                Date of Birth | "MM" | "DD" | "YYYY" | <u>Why?<&link-intact></u>
+            }
+            ---
+            {+
+                <b>Delete Your Account</b>
+                {+
+                    <&warning> <b>DANGER!</b> If you click this button, your account will be deleted. 
+                    There is no undo.
+                }
+                [<&delete> Goodbye, Cruel World!]
+            }
+            ---
+            {
+                [<&circle-check> OK] | [<&circle-x> Cancel]
+            }
+        }
+    }
+}}" as profile 
+
+profile -left-> "{{
+    salt
+    {+
+        <&delete> <b>Delete your profile</b>
+        ---
+        This is your last chance. If you go through with it,
+        you'll have to sign up all over again.
+        If you are certain you want to do this, enter your
+        password and press OK.
+        ---
+        {
+            <&key> Password | "********  "
+            CAPTCHA
+        }
+        ---
+        {
+            [<&delete> OK] | [<&circle-x> Cancel]
+        }
+    }
+}}" as deleteup
+
+deleteup -left-> "{{
+    salt
+    {+
+        As sad is it is to see you leave, I understand.
+        Thank you for using LightniNG.
+    }
+}}" as goodbye
+deleteup -right-> profile
+
+
+@enduml
