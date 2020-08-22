@@ -16,6 +16,8 @@ Include at least 3 wireframes here, adding images or files to your repository as
 > PlantUML uses a wireframe syntax called [Salt](https://plantuml.com/salt) that is easy to use.
 > [This guy](https://www.codeproject.com/Articles/1278703/UML-Made-Easy-with-PlantUML-VS-Code) does a fairly good job of explaining how to set it up. Although, I'm not sure why syntax highlight doesn't work for `*.uml` files.
 
+> **NOTE:** These Wireframe will also re-appear in the project in some `assests` folder. Where exactly I will list later.
+
 #### Wireframe 1: User Management
 
 Basically, your standard user management setup. "But I've seen this before!" or "This doesn't look like a wireframe".
@@ -48,12 +50,17 @@ The Process and Settings part will include
 * Notifications
 * A Display Map
 
-#### Wireframe 3: The Map
+#### Wireframe 3: The Notification, The Map, and The Menu
 
-This part is probably the most difficult to wireframe as I don't think PlantUML or Salt has the capabilities to illustrate this.
+[!The Notification, The Map, and The Menu](assets/NMM.png)
 
-<!-- Wireframe 3 -->
+In this wireframe, we show a case in which a Tornado Warning is threatening the area.
 
+* A notification will tell the user about it.
+* If they click on the notification, it will take them to a map in LightniNG showing them the full warning and the warned area.
+* The user has the option to alter the layers of the map to see other features that are available.
+
+Some of the settings in the menu are not set in stone yet.
 
 ### Project Tracker
 

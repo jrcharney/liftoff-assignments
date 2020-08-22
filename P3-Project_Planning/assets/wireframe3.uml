@@ -1,0 +1,96 @@
+@startuml
+
+title The Notification, The Map, and the Menu
+
+(*) -right-> "{{
+    salt
+    {
+        <&bell> <b>The Notification</b>
+        ---
+        {+
+            {<&bolt><b>LightniNG</b>} | <&x>
+            ---
+            {
+                <b>TORNADO WARNING IN YOUR AREA!</b>
+                Click here to go to the LightniNG app for details.
+                }
+        }
+
+    }
+}}" as TheNotification
+
+TheNotification -right-> "{{
+    salt 
+    {
+        <&map> <b>The Map</b>
+        The map will appear on the index page.
+        ---
+        {+
+            {
+                <&map> Map of the Warned area
+                <&layers> Radar Layers
+                <&map-marker> Warning Polygon
+                {+
+                    {<&comment-square> <b>TORNADO WARNING</b>}   | <&x>
+                    {
+                        {+
+                            The National Weather Service in St. Louis has issued at
+                            Tornado Warning for St. Louis County, Missouri until 7:15 PM.
+                            At 6:55PM trained spotters reported a funnel cloud over
+                            Chesterfield moving north east at 40 miles per hour.
+                            Locations impacted include
+                            * Chesterfield
+                            * Maryland Heights
+                            * Creve Couer
+                            * Bridgeton
+                            * Hazelwood
+                            * Florissant
+
+                            TAKE SHELTER NOW! 
+                        }
+                    }
+                }
+            } | <&menu>
+        }
+    }
+}}" as TheMap
+
+TheMap -right-> "{{
+    salt
+    {
+        <&menu> <b>The Menu</b>
+        ---
+        {+
+            {<&menu> <b>Menu</b>} | <&x>
+            ---
+            {
+                {
+                    <b>Radar Settings</b>
+                    {T
+                    + Modes
+                    ++ (X) Precipitation
+                    ++ ( ) Velocity
+                    }
+                }
+                ---
+                {
+                    <b>Map Settings</b>
+                    ( ) Physical
+                    ( ) Political
+                    ( ) Geographic
+                    (X) Street
+                }
+                ---
+                {+
+                    Likely more setting here.
+                    I haven't decided what yet.
+                }
+                
+            }
+        }
+    }
+}}" as TheMenu
+
+TheMenu -left-> TheMap
+
+@enduml
