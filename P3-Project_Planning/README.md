@@ -16,7 +16,6 @@ Include at least 3 wireframes here, adding images or files to your repository as
 > PlantUML uses a wireframe syntax called [Salt](https://plantuml.com/salt) that is easy to use.
 > [This guy](https://www.codeproject.com/Articles/1278703/UML-Made-Easy-with-PlantUML-VS-Code) does a fairly good job of explaining how to set it up. Although, I'm not sure why syntax highlight doesn't work for `*.uml` files.
 
-<!-- Wireframe 1 -->
 #### Wireframe 1: User Management
 
 Basically, your standard user management setup. "But I've seen this before!" or "This doesn't look like a wireframe".
@@ -36,14 +35,13 @@ The User Management Part will include
 * User Profile Settings
 
 
-#### Wireframe 2: Processing
-<!-- Wireframe 2 -->
+#### Wireframe 2: Process and Settings
 
-This diagram shows how the user settings and the notification process  aligns with each other
+This diagram shows how the user settings and the notification process aligns with each other
 
-![Process](assets/Process.png)
+![Process and Settings](assets/Process%20and%20Settings.png)
 
-The Process part will include
+The Process and Settings part will include
 * User Settings
 * An RSS Reader
 * Filters to determine which feeds to look form

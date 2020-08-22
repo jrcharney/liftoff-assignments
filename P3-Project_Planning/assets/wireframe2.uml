@@ -1,6 +1,6 @@
 @startuml
 
-title  Process
+title  Process and Settings
 
 (*) -right-> "{{
     salt
@@ -160,7 +160,7 @@ Notification --> "{{
         {+
             <&map> Map of the warned area.
             <&layers> A hamburger menu of the layers.
-            <&comment-square> Callout with scrollable bulleting.
+            <&comment-square> Callout with scrollable bulletin.
         }
     }
 }}" as Map
